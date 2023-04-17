@@ -1,0 +1,20 @@
+<h1>REQUISITOS DE MATRICULA</h1>
+<form action="" method="POST">
+    {% csrf_token %}
+    <ul>
+        {% for etapa in etapas %}
+        <li>{{etapa.etapa_texto}}
+            <ul>
+                {% for requisito in etapa.requisito_set.all %}
+                <li>
+                    <input type="checkbox" name="etapa_{{etapa.id}}" value="{{requisito.puntos}}">
+                    {{requisito.requisito_texto}}
+                </li>
+                {% endfor %}
+            </ul>
+        </li>
+        {% endfor %}
+    </ul>
+    <input type="submit" value="Enviar">
+</form>
+
